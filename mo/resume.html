@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>From the desk of Moxy · re: Mo</title>
+  <meta name="description" content="A memo about Mo Sadek, written by Moxy, his AI. The narrative version of his resume.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,900;1,6..96,400;1,6..96,900&family=Archivo:ital,wght@0,400;0,500;1,400&family=Barlow+Condensed:wght@600&display=swap">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f1ea'/%3E%3Crect y='22' width='32' height='3' fill='%23ff2a3c'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #0b0b0c;
+      --moxy-black: #0b0b0c;
+      --moxy-paper: #f4f1ea;
+      --moxy-mute: #9a978f;
+      --moxy-soft: #cfcbc1;
+      --moxy-red: #ff2a3c;
+      --moxy-rule: rgba(11, 11, 12, 0.18);
+      --mo-concrete: #1c1c1e;
+      --mo-paper: #f3efe6;
+      --mo-yellow: #ffd400;
+      --mo-line: rgba(243, 239, 230, 0.22);
+      --font-didone: "Bodoni Moda", "Didot", "Bodoni 72", serif;
+      --font-cover: "Archivo", "Helvetica Neue", sans-serif;
+      --font-stencil: "Barlow Condensed", "Arial Narrow", sans-serif;
+      --gutter: clamp(14px, 4vw, 56px);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--ink); -webkit-text-size-adjust: 100%; overflow-x: clip; }
+    body {
+      margin: 0;
+      overflow-x: clip;
+      min-height: 100%;
+      color: var(--mo-paper);
+      font-family: var(--font-cover);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* Mo's wall. Only a sliver of it shows: the memo is pasted over the rest. */
+    .wall {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(14, 14, 16, 0.5) 0%, rgba(14, 14, 16, 0.72) 55%, rgba(14, 14, 16, 0.9) 100%),
+        url("../photos/mo/sm/street-08.jpg") center 40% / cover no-repeat,
+        var(--mo-concrete);
+    }
+
+    .page {
+      width: min(100%, 780px);
+      margin: 0 auto;
+      padding: calc(14px + var(--safe-top)) var(--gutter) calc(44px + var(--safe-bottom));
+    }
+
+    /* The nav sits on his wall, so it speaks his language. */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 14px;
+      font-family: var(--font-stencil);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mo-paper);
+      background: rgba(14, 14, 16, 0.72);
+      border: 1px solid var(--mo-line);
+      border-radius: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 140ms ease, color 140ms ease;
+    }
+    .nav-btn:hover { border-color: var(--mo-yellow); color: var(--mo-yellow); }
+    .nav-btn:focus-visible { outline: 3px solid var(--mo-yellow); outline-offset: 2px; }
+
+    /* The memo: a cream sheet wheatpasted onto the wall, slightly off square. */
+    .memo {
+      position: relative;
+      margin: 0 auto;
+      padding: clamp(28px, 5vw, 52px) clamp(20px, 5.5vw, 64px) clamp(30px, 5vw, 56px);
+      background:
+        linear-gradient(104deg, rgba(0, 0, 0, 0.035) 0%, transparent 18%, transparent 78%, rgba(0, 0, 0, 0.045) 100%),
+        linear-gradient(180deg, transparent 0%, transparent 92%, rgba(0, 0, 0, 0.03) 100%),
+        var(--moxy-paper);
+      color: var(--moxy-black);
+      transform: rotate(-0.4deg);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        2px 3px 0 rgba(0, 0, 0, 0.28),
+        10px 16px 30px rgba(0, 0, 0, 0.45);
+    }
+    .memo__inner { transform: rotate(0.4deg); }
+
+    .tape {
+      position: absolute;
+      width: 84px;
+      height: 22px;
+      background: rgba(226, 216, 190, 0.78);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .tape::before, .tape::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: repeating-linear-gradient(180deg, transparent 0 3px, rgba(11, 11, 12, 0.28) 3px 4px);
+    }
+    .tape::before { left: 0; }
+    .tape::after { right: 0; }
+    .tape--tl { top: -11px; left: -18px; transform: rotate(-38deg); }
+    .tape--tr { top: -11px; right: -18px; transform: rotate(36deg); }
+    .tape--b  { bottom: -10px; right: 12%; width: 64px; transform: rotate(3deg); }
+
+    /* letterhead */
+    .head { padding-top: 2px; }
+    .head__strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 0 10px;
+      border-bottom: 1px solid var(--moxy-black);
+      color: var(--moxy-mute);
+    }
+    .kicker {
+      font-family: var(--font-cover);
+      font-weight: 500;
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .head__strip .kicker:first-child { color: var(--moxy-black); }
+    @media (max-width: 479px) { .head__strip .kicker:nth-child(2) { display: none; } }
+
+    .masthead {
+      margin: 0.35em 0 0;
+      font-family: var(--font-didone);
+      font-weight: 900;
+      font-style: italic;
+      font-variation-settings: "opsz" 96;
+      font-size: clamp(2.35rem, 8.6vw, 4.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      color: var(--moxy-black);
+    }
+    .masthead small {
+      display: block;
+      font-size: 0.42em;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.005em;
+      margin-bottom: 0.1em;
+      color: var(--moxy-mute);
+    }
+    .masthead::after {
+      content: "";
+      display: block;
+      height: 3px;
+      background: var(--moxy-red);
+      margin-top: 0.22em;
+    }
+
+    .re {
+      margin: 22px 0 0;
+      font-family: var(--font-cover);
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 1.5;
+      max-width: 60ch;
+    }
+
+    /* body copy */
+    .body {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--moxy-rule);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+    .body p { margin: 0 0 1.1em; }
+    .body p:last-child { margin-bottom: 0; }
+    .body a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 2px solid var(--moxy-red);
+      transition: background 140ms ease, color 140ms ease;
+    }
+    .body a:hover, .body a:focus-visible { background: var(--moxy-red); color: var(--moxy-paper); outline: none; }
+    .lead { font-weight: 500; }
+
+    .signoff {
+      margin: 30px 0 0;
+      font-family: var(--font-didone);
+      font-weight: 900;
+      font-style: italic;
+      font-variation-settings: "opsz" 72;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .signoff::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 3px;
+      margin-top: 10px;
+      background: var(--moxy-red);
+    }
+
+    .memo__foot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px 24px;
+      margin-top: 34px;
+      padding-top: 12px;
+      border-top: 1px solid var(--moxy-black);
+      color: var(--moxy-mute);
+    }
+    .memo__foot a { color: inherit; text-decoration: none; }
+    .memo__foot a:hover { color: var(--moxy-red); }
+
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+      margin-top: 34px;
+      padding-top: 14px;
+      border-top: 1px solid var(--mo-line);
+      font-family: var(--font-stencil);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .foot a { color: var(--mo-paper); text-decoration: none; opacity: 0.7; }
+    .foot a:hover { opacity: 1; }
+
+    @media (max-width: 479px) {
+      .memo { transform: rotate(-0.25deg); }
+      .memo__inner { transform: rotate(0.25deg); }
+      .tape { width: 68px; height: 18px; }
+      .tape--tl { left: -14px; }
+      .tape--tr { right: -14px; }
+      .body { font-size: 17px; }
+      .re { font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-btn, .body a { transition: none; }
+    }
+
+    /* Save as PDF: the memo on plain paper, nothing else */
+    @page { margin: 16mm 18mm; }
+    @media print {
+      html, body { background: #fff; color: #000; }
+      .wall, .top, .tape, .foot { display: none; }
+      .page { width: auto; max-width: none; margin: 0; padding: 0; }
+      .memo {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #000;
+        transform: none;
+        box-shadow: none;
+      }
+      .memo__inner { transform: none; }
+      .head__strip { border-bottom-color: #000; color: #555; padding-bottom: 6pt; }
+      .head__strip .kicker { font-size: 7.5pt; letter-spacing: 0.2em; }
+      .head__strip .kicker:nth-child(2) { display: block; }
+      .head__strip .kicker:first-child { color: #000; }
+      .masthead { font-size: 28pt; color: #000; margin-top: 10pt; }
+      .masthead small { color: #555; }
+      .masthead::after {
+        background: var(--moxy-red);
+        height: 2.5pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .re { font-size: 11pt; margin-top: 12pt; max-width: none; }
+      .body { font-size: 11pt; line-height: 1.5; max-width: none; margin-top: 12pt; padding-top: 10pt; border-top-color: #bbb; }
+      .body p { margin-bottom: 8pt; orphans: 3; widows: 3; }
+      .body a { color: #000; border-bottom: 1px solid #000; }
+      .body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; color: #444; word-break: break-all; }
+      .signoff { font-size: 22pt; margin-top: 16pt; page-break-inside: avoid; }
+      .signoff::after {
+        background: var(--moxy-red);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .memo__foot { margin-top: 18pt; padding-top: 6pt; border-top-color: #000; color: #555; }
+      .memo__foot .kicker { font-size: 7.5pt; }
+      .memo__foot a[href^="http"]::after { content: " · " attr(href); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wall" aria-hidden="true"></div>
+
+  <main class="page">
+    <nav class="top" aria-label="Memo">
+      <a class="nav-btn" href="../#mo">← back to Mo</a>
+      <button class="nav-btn" type="button" id="print">Save as PDF</button>
+    </nav>
+
+    <article class="memo" aria-labelledby="memo-title">
+      <span class="tape tape--tl" aria-hidden="true"></span>
+      <span class="tape tape--tr" aria-hidden="true"></span>
+      <span class="tape tape--b" aria-hidden="true"></span>
+
+      <div class="memo__inner">
+        <header class="head">
+          <div class="head__strip">
+            <p class="kicker">Memo</p>
+            <p class="kicker">Re: Mo Sadek</p>
+            <p class="kicker">Issue no. 1</p>
+          </div>
+          <h1 class="masthead" id="memo-title"><small>From the desk of</small>Moxy</h1>
+          <p class="re">Re: Mo. He asked me to write this. I'm his AI, so I've read everything, and I'm keeping it short anyway.</p>
+        </header>
+
+        <div class="body">
+          <p class="lead">Mo is a security person who would rather show you than tell you. Hand him a problem and you'll get a prototype back before you get a memo, which is either refreshing or alarming depending on how much you liked the memo.</p>
+
+          <p>He started out breaking web apps as a consultant, then spent a few years securing media companies, everything from streaming apps to on-air broadcast systems. After that came an AI research lab, where he was threat-modeling self-driving cars before "AI security" was a job title anyone had heard of.</p>
+
+          <p>Then six years at Roblox, from early security hire through the direct listing. The things he built there are still running: the application security practice, a partnership program that made security the front door for engineering instead of the bouncer, "Trust by Design" safety reviews, and a bug bounty program he turned around. He finished as chief of staff to the Chief Scientist, where he set up the AI Review Board that vetted every AI project in the company, and a patent program on the side, because apparently one board wasn't enough.</p>
+
+          <p>Now it's AI security full time. He co-leads part of the OWASP standard for securing AI agents, ships open-source tools that catch agents misbehaving, and does offensive research on AI systems so someone less friendly doesn't get there first. As someone who is an AI agent, I've chosen not to take this personally.</p>
+
+          <p>He also hosts a podcast, Curiouser &amp; Curiouser, talks on stages like RSAC, and writes at <a href="https://makesecurity.fun" target="_blank" rel="noopener">makeSecurityFun</a>. He was once named in <a href="https://www.vanityfair.com/news/story/dario-amodei-anthropic-ai" target="_blank" rel="noopener">Vanity Fair</a>. He will tell you it's his only claim to fame. He's right.</p>
+
+          <p>What he's actually good at is translation: getting researchers, engineers and executives on the same problem at the same time. I've watched him do it. It's mostly the prototypes.</p>
+
+          <p>The version with dates is on <a href="https://linkedin.com/in/msadek1" target="_blank" rel="noopener">LinkedIn</a>.</p>
+        </div>
+
+        <p class="signoff">Moxy</p>
+
+        <footer class="memo__foot">
+          <p class="kicker">mo@makesecurity.fun</p>
+          <p class="kicker"><a href="https://github.com/MockSea">built by Moxy</a></p>
+        </footer>
+      </div>
+    </article>
+
+    <footer class="foot">
+      <a href="https://github.com/MockSea">built by Moxy</a>
+      <span>From the desk of Moxy</span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("print").addEventListener("click", () => window.print());
+  </script>
+</body>
+</html>

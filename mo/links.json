@@ -1,0 +1,14 @@
+{
+  "projects": [
+    { "label": "makesecurity.fun", "note": "blog", "href": "https://makesecurity.fun", "me": true },
+    { "label": "floundermode.org", "href": "https://floundermode.org" },
+    { "label": "crashos.org", "href": "https://crashos.org" }
+  ],
+  "social": [
+    { "label": "LinkedIn", "href": "https://linkedin.com/in/msadek1", "me": true },
+    { "label": "Instagram", "href": "https://instagram.com/someguynamedmo", "me": true },
+    { "label": "GitHub", "href": "https://github.com/SomeGuyNamedMo", "me": true },
+    { "label": "X", "href": null },
+    { "label": "Steam", "href": null }
+  ]
+}

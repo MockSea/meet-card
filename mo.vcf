@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Sadek;Mo;;;
+FN:Mo Sadek
+NICKNAME:Mo
+EMAIL;TYPE=INTERNET,HOME,PREF:mo@menacingly.fun
+EMAIL;TYPE=INTERNET,WORK:mo@makesecurity.fun
+URL;TYPE=HOME:https://makesecurity.fun
+URL:https://floundermode.org
+URL:https://crashos.org
+URL:https://linkedin.com/in/msadek1
+URL:https://instagram.com/someguynamedmo
+URL:https://github.com/SomeGuyNamedMo
+X-SOCIALPROFILE;TYPE=linkedin:https://linkedin.com/in/msadek1
+X-SOCIALPROFILE;TYPE=instagram:https://instagram.com/someguynamedmo
+X-SOCIALPROFILE;TYPE=github:https://github.com/SomeGuyNamedMo
+END:VCARD
