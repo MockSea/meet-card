@@ -187,6 +187,12 @@
     const schedule = () => {
       if (timer) clearInterval(timer);
       timer = running() ? setInterval(tick, AUTO_ADVANCE_MS) : null;
+      // the button says what the slideshow is actually doing: under reduced
+      // motion it never runs, so it reads "play" even before a tap
+      const stopped = hold.user || reduceMotion.matches;
+      pauseBtn.setAttribute("aria-pressed", String(stopped));
+      pauseBtn.setAttribute("aria-label", stopped ? "Play slideshow" : "Pause slideshow");
+      pauseBtn.textContent = stopped ? "play" : "pause";
     };
 
     const go = (dir) => {
@@ -201,9 +207,6 @@
 
     pauseBtn.addEventListener("click", () => {
       hold.user = !hold.user;
-      pauseBtn.setAttribute("aria-pressed", String(hold.user));
-      pauseBtn.setAttribute("aria-label", hold.user ? "Play slideshow" : "Pause slideshow");
-      pauseBtn.textContent = hold.user ? "play" : "pause";
       schedule();
     });
 
@@ -346,7 +349,8 @@
     cta.textContent = "Read";
 
     if (kind === "feature") {
-      el.append(num, title, dek, cta);
+      // a lone story is not numbered
+      el.append(title, dek, cta);
     } else {
       const body = document.createElement("div");
       body.append(title, dek);
