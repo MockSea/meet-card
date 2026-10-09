@@ -357,6 +357,7 @@ h1[tabindex="-1"]:focus { outline: none; }
   .card--mo { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px 56px; align-items: start; }
   .card--mo .card__nav,
   .card--mo .mo-hero,
+  .card--mo .mo-blurb,
   .card--mo .mo-links,
   .card--mo .byline { grid-column: 1 / -1; }
   .card--mo .mo-contact { padding-top: 6px; }
@@ -399,6 +400,45 @@ h1[tabindex="-1"]:focus { outline: none; }
 }
 .spray-btn:hover { transform: translate(1px, 1px); box-shadow: 3px 3px 0 var(--paper); }
 .spray-btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--paper); }
+
+/* the short version: one paper note taped under the name */
+.mo-blurb { display: grid; gap: 14px; align-content: start; max-width: 62ch; }
+.mo-blurb__title { color: var(--mo-yellow); margin: 0; }
+.mo-blurb__paper {
+  --rot: -0.5deg;
+  position: relative;
+  margin-top: 2px;
+  transform: rotate(var(--rot));
+  filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, 0.5));
+}
+.mo-blurb__note {
+  margin: 0;
+  padding: 18px 20px 20px;
+  background: var(--paper);
+  color: var(--mo-black);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.5;
+  clip-path: polygon(
+    0 4%, 3% 0, 9% 3%, 16% 0.5%, 24% 4%, 31% 1%, 40% 3.5%, 48% 0, 57% 3%, 66% 0.5%,
+    74% 3.5%, 82% 1%, 90% 4%, 97% 0.5%, 100% 3%,
+    100% 96.5%, 96% 100%, 88% 97%, 80% 100%, 71% 97.5%, 62% 100%, 53% 97%, 44% 99.5%,
+    35% 96.5%, 27% 100%, 18% 97.5%, 10% 100%, 4% 97%, 0 100%
+  );
+}
+.mo-blurb__paper::after {
+  /* a strip of tape over the top edge, outside the tear */
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: calc(100% - 92px);
+  width: 60px;
+  height: 16px;
+  background: rgba(255, 221, 64, 0.62);
+  transform: rotate(4deg);
+  pointer-events: none;
+}
 
 /* contact: paste-ups. Torn paper strips taped to the wall, each one
    crooked its own way, with a stencil-cut label and a sans address. */
@@ -548,22 +588,25 @@ h1[tabindex="-1"]:focus { outline: none; }
 .carousel__btn:hover { background: var(--mo-yellow); color: var(--mo-black); }
 .carousel__btn--pause[aria-pressed="true"] { background: var(--mo-yellow); color: var(--mo-black); }
 
-/* links: projects and profiles, grouped */
-.mo-links { display: grid; gap: 22px; padding-top: 8px; }
+/* links: projects and profiles, one column. Both groups share the
+   column's width, so every row's left and right edges line up. */
+.mo-links { display: grid; gap: 22px; padding-top: 8px; max-width: 440px; }
 .links-group { display: grid; gap: 10px; }
 .links-group__title { margin: 0; color: var(--mo-yellow); }
 .chips {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
 }
 .chip {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5em;
+  width: 100%;
   min-height: 44px;
   padding: 0 16px;
   border: 1px solid rgba(243, 239, 230, 0.4);
@@ -577,7 +620,7 @@ h1[tabindex="-1"]:focus { outline: none; }
   text-decoration: none;
   transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
 }
-.chip small { font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+.chip small { margin-left: auto; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
 .chip:hover { background: var(--mo-yellow); border-color: var(--mo-yellow); color: var(--mo-black); }
 .chip--project { background: var(--paper); border-color: var(--paper); color: var(--mo-black); }
 
