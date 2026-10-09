@@ -34,6 +34,9 @@
   };
 
   let current = null;
+  let lastTap = false;
+  document.addEventListener("pointerdown", () => { lastTap = true; }, true);
+  document.addEventListener("keydown", () => { lastTap = false; }, true);
 
   // The closed half and the open half's own teaser drop out of the tab
   // order; focus lands on the opened card's heading, and goes back to the
@@ -64,7 +67,9 @@
     }
 
     if (!focus) return;
-    const target = side ? headings[side] : prev ? teasers[prev] : null;
+    // A tap home leaves focus alone: WebKit draws the ring on a scripted
+    // focus whatever the input, so only keyboard users get the teaser back.
+    const target = side ? headings[side] : prev && !lastTap ? teasers[prev] : null;
     if (!target) return;
     // A fragment navigation hands focus to the viewport on the next frame,
     // after this handler has run; wait that out before claiming it.
