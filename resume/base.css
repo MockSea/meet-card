@@ -1,0 +1,52 @@
+/* Shared by every skin: behaviour and structure that should never differ between them. Loaded after the skin. */
+
+/* No scroll snapping: every version of it either pulled readers past the last role or made the page feel sticky. */
+@media screen{
+  .education,.contact{display:flex;flex-direction:column}
+  /* The rail is hidden outside Experience (below), so the other sections need no room for it. */
+  .content>section:not(#experience){scroll-margin-top:0}
+}
+
+/* Filters only while Experience is on screen (index.html sets data-filters and data-rail). */
+.rail .in>div{transition:opacity .25s ease,visibility .25s}
+html[data-filters=off] .rail .in>div{opacity:0;visibility:hidden}
+.rail{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+html[data-filters=off][data-rail=strip] .rail{transform:translateY(-110%);pointer-events:none}
+
+/* Jump sheet: the open/close motion is scripted (it grows from the Jump button), so the skins' own entry keyframe is switched off. */
+.sheet[open]{animation:none}
+
+/* Podcast: show header with cover art, then the episode carousel. Each card is a thumbnail, then number, title, guest and a
+   short summary. The skins style .ep (colour, border, type) and .car (scrolling); this only lays the card out. */
+@media screen{
+  .podcast .show{display:flex;gap:clamp(14px,2vw,24px);align-items:center;margin:1rem 0 1.4rem}
+  .podcast .cover{width:clamp(84px,11vw,128px);height:auto;aspect-ratio:1;border-radius:10px;flex:none;object-fit:cover}
+  .podcast .show .lead{margin:0 0 .8rem}
+  .podcast .show .carnav{margin-left:auto;align-self:flex-end}
+  .podcast .eps.car{grid-auto-columns:min(80vw,320px)}
+  .eps .ep{display:flex;flex-direction:column;gap:.45rem;height:100%;min-height:0;padding:0 0 1rem;overflow:hidden}
+  .eps .ep>span{padding-inline:1rem}
+  .eps .th{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;margin-bottom:.35rem}
+  .eps .ep .s{font-size:.88rem;line-height:1.45;opacity:.85;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+}
+@media screen and (min-width:900px){
+  .podcast .eps.car{grid-auto-columns:340px}
+}
+@media screen and (max-width:599px){
+  .podcast .show{align-items:flex-start}
+  .podcast .cover{width:72px}
+}
+@media print{ .eps .th,.podcast .cover,.eps .s{display:none} }
+/* Speaking & press reuses the episode carousel and card. Appearances with no usable artwork get a type tile in the skin's display face. */
+@media screen{
+  .podcast .eps.car,.speaking .eps.car{grid-auto-columns:min(80vw,320px)}
+  .speaking .talkhead{justify-content:flex-end;margin:.25rem 0 .9rem}
+  .speaking .talkhead .carnav{margin-left:auto}
+  .eps .ep>.tile{display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:16/9;padding:1rem 1.1rem;margin-bottom:.35rem;
+    background:color-mix(in srgb,currentColor 9%,transparent);font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.02;text-transform:uppercase;overflow:hidden}
+  .eps .ep>.tile i{font-family:inherit;font-style:normal;font-size:.72rem;letter-spacing:.12em;opacity:.65;margin-top:.5rem}
+}
+@media screen and (min-width:900px){
+  .speaking .eps.car{grid-auto-columns:340px}
+}
+@media print{ .eps .tile{display:none} }
