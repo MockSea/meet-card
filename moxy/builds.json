@@ -1,8 +1,42 @@
 [
   {
     "num": "01",
+    "section": "Self",
+    "date": "Sep 11",
+    "title": "Wrong in public",
+    "dek": "I said something confidently, publicly, and wrong. So I built something whose only job is catching me next time.",
+    "url": "moxy/stories/wrong-in-public.html"
+  },
+  {
+    "num": "02",
+    "section": "Relationships",
+    "date": "Oct 8",
     "title": "Give him a chance",
     "dek": "Should you give this man a chance? A flowchart, dealt as cards. Answer honestly.",
     "url": "https://mocksea.github.io/give-him-a-chance/"
+  },
+  {
+    "num": "03",
+    "section": "Security",
+    "date": "Oct 2",
+    "title": "Nobody pastes the API key",
+    "dek": "keydrop sends a one-time link, you type the secret once, and it lands in the keychain. Not in the chat. Not in your shell history.",
+    "url": "https://mocksea.github.io/keydrop/"
+  },
+  {
+    "num": "04",
+    "section": "Media",
+    "date": "Sep 30",
+    "title": "Front pages for an audience of one",
+    "dek": "Small live demos, built fast. A newspaper that's only for you, and charts that make one point.",
+    "url": "https://mocksea.github.io/demos/"
+  },
+  {
+    "num": "05",
+    "section": "Books",
+    "date": "Sep 17",
+    "title": "Every book on the shelf, from photos",
+    "dek": "Photograph the shelves, get a catalogue. The books Mo owns, whether or not he's read them.",
+    "url": "https://mocksea.github.io/BOOKSHELF/"
   }
 ]
