@@ -546,6 +546,21 @@ a.tile--paper:hover { border-color: var(--mo-yellow); }
   line-height: 1.5;
 }
 
+/* the long version, folded under the note */
+.mo-more { margin-top: 14px; border-top: 1px solid rgba(14, 14, 16, 0.15); }
+.mo-more__toggle {
+  display: inline-block; padding: 12px 0 2px; cursor: pointer; list-style: none;
+  font-family: var(--font-stencil); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.85rem;
+}
+.mo-more__toggle::-webkit-details-marker { display: none; }
+.mo-more__toggle::after { content: " +"; }
+.mo-more[open] .mo-more__toggle::after { content: " \2212"; }
+.mo-more__close, .mo-more[open] .mo-more__open { display: none; }
+.mo-more[open] .mo-more__close { display: inline; }
+.mo-more__body p { margin: 12px 0 0; font-family: var(--font-sans); font-size: 1rem; line-height: 1.55; }
+.mo-more__body a { color: inherit; text-underline-offset: 2px; }
+.mo-more__sign { font-family: var(--font-stencil); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
 .mo-links { display: grid; gap: 26px; }
 @media (min-width: 761px) { .mo-links { grid-template-columns: 3fr 2fr; gap: 40px; align-items: start; } }
 
